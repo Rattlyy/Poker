@@ -124,37 +124,6 @@ public class Gioco {
         return Win.NIENTE;
     }
 
-    public static Win old(Carta... carte) {
-        Map<Seme, Integer[]> map = new HashMap<>();
-
-        for (Seme s : Seme.values()) {
-            if (Arrays.stream(carte).allMatch((e) -> s == e.getSeme())) return Win.COLORE;
-
-            map.put(s, new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
-        }
-
-        for (Carta a : carte) {
-            var array = map.get(a.getSeme());
-            array[a.getNum() - 1] += 1;
-
-            map.replace(a.getSeme(), array);
-        }
-
-        int doppie = 0;
-        for (Integer[] val : map.values()) {
-            for (int i = 0; i < 10; i++) {
-                if (val[i] == 5) return Win.POKER;
-                if (val[i] == 3) return Win.TRIS;
-                if (val[i] == 2) doppie++;
-            }
-        }
-
-        if (doppie == 1) return Win.COPPIA;
-        if (doppie == 2) return Win.DOPPIA_COPPIA;
-
-        return Win.NIENTE;
-    }
-
     public JPanel panel() {
         return panel;
     }
