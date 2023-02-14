@@ -53,15 +53,15 @@ public class Carta extends JPanel {
         return num;
     }
 
+    public void dietro() {
+        immagine = "DIETRO.GIF";
+        repaint();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Carta carta)
             return seme == carta.seme && num == carta.num;
         else return false;
-    }
-
-    public void dietro() {
-        immagine = "DIETRO.GIF";
-        repaint();
     }
 }
